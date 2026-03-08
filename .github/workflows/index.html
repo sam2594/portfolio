@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shyam Christy Paul | BI & Marketing Cloud Expert</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <style>
+        /* --- Hyper-Smooth CSS Variable System --- */
+        :root {
+            /* Midnight Executive Theme */
+            --primary: #fbbf24; 
+            --primary-glow: rgba(251, 191, 36, 0.3);
+            --bg: #0b0f1a; 
+            --nav-bg: rgba(11, 15, 26, 0.8);
+            --card-bg: rgba(30, 41, 59, 0.5);
+            --text-main: #f8fafc; 
+            --text-muted: #94a3b8; 
+            --border: rgba(255, 255, 255, 0.05);
+            --shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.5);
+            --blob-1: rgba(251, 191, 36, 0.08);
+            --blob-2: rgba(99, 102, 241, 0.08);
+            --logo-shield: #1e293b;
+            --ease: cubic-bezier(0.2, 0, 0, 1);
+        }
+
+        [data-theme="light"] {
+            /* Crystal Aurora Light Theme */
+            --primary: #8b5cf6; 
+            --primary-glow: rgba(139, 92, 246, 0.2);
+            --bg: #ffffff; 
+            --nav-bg: rgba(255, 255, 255, 0.8);
+            --card-bg: rgba(255, 255, 255, 0.6);
+            --text-main: #0f172a; 
+            --text-muted: #64748b; 
+            --border: rgba(139, 92, 246, 0.1);
+            --shadow: 0 20px 40px -15px rgba(139, 92, 246, 0.15);
+            --blob-1: rgba(139, 92, 246, 0.08);
+            --blob-2: rgba(236, 72, 153, 0.08);
+            --logo-shield: #f8fafc;
+        }
+
+        /* --- Base Reset --- */
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+        }
+        
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.6s var(--ease);
+        }
+
+        /* --- Interactive Aurora Background --- */
+        .aurora {
+            position: fixed;
+            width: 100vw; height: 100vh;
+            top: 0; left: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none; /* Crucial: ensures background doesn't block mouse events */
+        }
+        .blob {
+            position: absolute;
+            width: 800px; height: 800px;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: drift 30s infinite alternate;
+        }
+        .blob-1 { background: var(--blob-1); top: -10%; left: -10%; }
+        .blob-2 { background: var(--blob-2); bottom: -10%; right: -10%; animation-delay: -15s; }
+        
+        @keyframes drift {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(10%, 10%) scale(1.1); }
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+        /* --- Navigation: Magnetic Feel --- */
+        nav {
+            position: sticky; top: 0;
+            background: var(--nav-bg);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000; padding: 0.75rem 0;
+        }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        
+        .logo-container { 
+            display: flex; align-items: center; gap: 16px; 
+            text-decoration: none; 
+            transition: 0.4s var(--ease);
+        }
+        .logo-container:hover { transform: scale(1.02); }
+        .logo-svg { width: 56px; height: 56px; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2)); }
+        .logo-text { 
+            font-weight: 800; font-size: 1.4rem; color: var(--text-main); 
+            letter-spacing: 2px; line-height: 1.1; 
+        }
+
+        .nav-actions { display: flex; align-items: center; gap: 40px; }
+        .nav-links { display: flex; gap: 32px; }
+        .nav-links a { 
+            text-decoration: none; color: var(--text-muted); 
+            font-weight: 700; font-size: 0.9rem; 
+            transition: 0.3s var(--ease);
+            position: relative;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 0; height: 2px; background: var(--primary);
+            transition: 0.3s var(--ease);
+        }
+        .nav-links a:hover { color: var(--text-main); }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: var(--card-bg); border: 1px solid var(--border);
+            color: var(--primary); width: 48px; height: 48px;
+            border-radius: 14px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; box-shadow: var(--shadow);
+            transition: 0.4s var(--ease);
+        }
+        .theme-toggle:hover { transform: translateY(-3px) rotate(15deg); border-color: var(--primary); }
+
+        /* --- Hero Section: Elegant Entrance --- */
+        .hero { padding: 100px 0 80px; text-align: center; perspective: 1000px; }
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 5rem); font-weight: 800; letter-spacing: -3px; margin-bottom: 24px;
+            background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: heroFadeIn 1.2s var(--ease) forwards;
+        }
+        .hero p { 
+            font-size: 1.25rem; color: var(--text-muted); 
+            max-width: 750px; margin: 0 auto 40px; font-weight: 500;
+            opacity: 0; animation: heroFadeIn 1.2s var(--ease) 0.2s forwards;
+        }
+
+        @keyframes heroFadeIn {
+            from { opacity: 0; transform: translateY(40px) rotateX(-10deg); }
+            to { opacity: 1; transform: translateY(0) rotateX(0); }
+        }
+
+        .badge-container { 
+            display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; 
+            opacity: 0; animation: heroFadeIn 1.2s var(--ease) 0.4s forwards;
+        }
+        .hero-badge {
+            background: var(--card-bg); border: 1px solid var(--border);
+            padding: 10px 24px; border-radius: 16px;
+            font-size: 0.85rem; font-weight: 700; color: var(--primary);
+            transition: 0.4s var(--ease);
+            cursor: default;
+        }
+        .hero-badge:hover { 
+            background: var(--primary); color: var(--bg); 
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px var(--primary-glow);
+        }
+
+        /* --- Sections & Cards: 3D Perspective --- */
+        section { padding: 80px 0; text-align: center; }
+        .section-title { 
+            font-size: 2.5rem; 
+            font-weight: 800; 
+            margin-bottom: 48px; 
+            position: relative; 
+            display: inline-block; 
+        }
+        .section-title::after { 
+            content: ''; position: absolute; bottom: -12px; left: 50%; 
+            transform: translateX(-50%);
+            width: 60px; height: 4px; background: var(--primary); border-radius: 2px; 
+        }
+
+        .glass-card {
+            background: var(--card-bg); backdrop-filter: blur(20px);
+            border: 1px solid var(--border); border-radius: 32px;
+            padding: 48px; box-shadow: var(--shadow);
+            transition: 0.5s var(--ease);
+            position: relative; overflow: hidden;
+            text-align: center;
+            margin: 0 auto;
+        }
+        .glass-card:hover {
+            transform: translateY(-10px) scale(1.01);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Staggered Reveal Animation */
+        .reveal { opacity: 0; transform: translateY(50px); transition: 1s var(--ease); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- Robust Flex-Based Timeline --- */
+        .timeline-container {
+            position: relative;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 0 0;
+        }
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--primary), transparent);
+            transform: translateX(-50%);
+            opacity: 0.2;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between; /* Creates the split */
+            align-items: center;
+            min-height: 150px;
+        }
+        .timeline-node {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background: var(--bg);
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            box-shadow: 0 0 15px var(--primary-glow);
+            transition: 0.4s var(--ease);
+        }
+        .timeline-item:hover .timeline-node {
+            background: var(--primary);
+            transform: translate(-50%, -50%) scale(1.3);
+        }
+        
+        /* Flex Children */
+        .timeline-date, .timeline-content {
+            width: 45%; /* Precise 50/50 split with gap */
+            transition: 0.5s var(--ease);
+        }
+
+        /* Default (Right Side) */
+        .timeline-date {
+            text-align: right;
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 1.1rem;
+            letter-spacing: 1.5px;
+            padding-right: 40px;
+            order: 1; /* Date on Left */
+        }
+        .timeline-content {
+            text-align: left;
+            order: 3; /* Content on Right */
+        }
+
+        /* Left Side Override */
+        .timeline-item.left-side .timeline-date {
+            text-align: left;
+            padding-right: 0;
+            padding-left: 40px;
+            order: 3; /* Date on Right */
+        }
+        .timeline-item.left-side .timeline-content {
+            text-align: right;
+            order: 1; /* Content on Left */
+        }
+
+        /* Responsive Mobile Layout */
+        @media (max-width: 900px) {
+            .timeline-container::before { left: 30px; }
+            .timeline-node { left: 30px; }
+            .timeline-item { 
+                flex-direction: column; 
+                align-items: flex-start;
+                margin-bottom: 40px;
+            }
+            .timeline-date, .timeline-content { 
+                width: calc(100% - 80px); 
+                margin-left: 80px !important; 
+                text-align: left !important; 
+                order: unset !important;
+                padding: 0 !important;
+            }
+            .timeline-date { margin-bottom: 12px; }
+        }
+
+        @media (max-width: 768px) {
+            .journey-deck { padding: 0 24px; }
+            .journey-card { width: 300px; }
+        }
+
+        /* --- Categorized Skills --- */
+        .skills-category {
+            margin-bottom: 40px;
+        }
+        .skills-category h3 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 24px;
+            text-align: center;
+            opacity: 0.8;
+        }
+        /* --- Skills Grid: 3D Pop Effect --- */
+        .skills-grid { 
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px; 
+            perspective: 1200px;
+            justify-content: center; /* Ensures items are always centered */
+            margin: 0 auto;
+            max-width: 1000px;
+        }
+        .skill-item {
+            flex: 0 1 150px; /* Reduced width from 180px */
+            padding: 24px 16px; /* Reduced padding for a tighter fit */
+            text-align: center; border-radius: 20px; font-weight: 700;
+            background: var(--card-bg); border: 1px solid var(--border); 
+            transition: 0.5s var(--ease); color: var(--text-muted);
+            transform-style: preserve-3d;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+        .skill-item i {
+            font-size: 3.5rem; /* Increased from 2.8rem */
+            transition: 0.5s var(--ease);
+            /* Removed forced color to allow Devicon original colors */
+        }
+        .skill-item:hover i {
+            transform: translateZ(50px);
+            filter: drop-shadow(0 8px 15px rgba(0,0,0,0.3));
+        }
+        .skill-item:hover { 
+            transform: translateY(-20px) scale(1.1) rotateX(10deg) rotateY(-5deg); 
+            border-color: var(--primary); 
+            color: var(--primary); 
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 
+                0 20px 40px -10px rgba(0, 0, 0, 0.5),
+                0 0 20px 0px var(--primary-glow);
+            z-index: 10;
+        }
+        /* Inner text "pop" */
+        .skill-item span {
+            display: block;
+            transition: 0.5s var(--ease);
+            font-size: 0.9rem;
+        }
+        .skill-item:hover span {
+            transform: translateZ(30px); /* Move text even further forward */
+        }
+
+        /* Projects: Visual High-Impact */
+        .projects-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); 
+            gap: 40px; 
+            justify-content: center;
+        }
+        .project-card .project-accent { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 8px; 
+            background: linear-gradient(to right, var(--primary), var(--primary-light));
+        }
+        .project-link {
+            display: inline-block; margin-top: 32px; padding: 16px 36px;
+            background: var(--primary); color: var(--bg); text-decoration: none;
+            border-radius: 18px; font-weight: 800; font-size: 0.9rem; 
+            transition: 0.4s var(--ease);
+        }
+        .project-link:hover { 
+            transform: scale(1.05) translateY(-2px); 
+            box-shadow: 0 15px 25px var(--primary-glow); 
+        }
+
+        /* --- Contact Form Styles --- */
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .form-group {
+            margin-bottom: 24px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            color: var(--text-main);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: 0.3s var(--ease);
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.07);
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 18px;
+            background: var(--primary);
+            color: var(--bg);
+            border: none;
+            border-radius: 16px;
+            font-weight: 800;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.4s var(--ease);
+        }
+        .btn-submit:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 30px var(--primary-glow);
+        }
+
+        /* --- Footer --- */
+        footer { padding: 80px 0; border-top: 1px solid var(--border); text-align: center; }
+        .footer-logo { font-size: 2.5rem; font-weight: 800; color: var(--primary); margin: 0 auto 32px; display: block; text-decoration: none; }
+        .footer-content { max-width: 650px; margin: 0 auto; }
+        .social-links { display: flex; gap: 40px; margin-top: 48px; justify-content: center; }
+        .social-links a { color: var(--text-muted); text-decoration: none; font-weight: 700; transition: 0.3s; }
+        .social-links a:hover { color: var(--primary); transform: translateY(-3px); }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3.5rem; letter-spacing: -1px; }
+            .nav-actions { display: none; }
+            .glass-card { padding: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="aurora">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+</div>
+
+<nav>
+    <div class="container nav-content">
+        <a href="#" class="logo-container">
+            <svg class="logo-svg" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- High-End Geometric Shield with Continuous Draw Animation -->
+                <path id="logo-shield-path" d="M20 0H60L80 20V60L60 80H20L0 60V20L20 0Z" fill="var(--logo-shield)" stroke="var(--primary)" stroke-width="1">
+                    <style>
+                        #logo-shield-path {
+                            stroke-dasharray: 100, 180;
+                            animation: rotateShield 6s linear infinite;
+                        }
+                        @keyframes rotateShield {
+                            from { stroke-dashoffset: 280; }
+                            to { stroke-dashoffset: 0; }
+                        }
+                    </style>
+                </path>
+                <!-- Integrated Monogram Initials with Continuous Pulse -->
+                <text x="40" y="44" text-anchor="middle" dominant-baseline="middle" fill="var(--primary)" style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -1px;">
+                    SCP
+                    <animate attributeName="opacity" values="1;0.4;1" dur="3s" repeatCount="indefinite" />
+                </text>
+                <!-- Continuous Structural Accent Line -->
+                <path d="M25 54H55" stroke="var(--primary)" stroke-width="4" stroke-linecap="square">
+                    <animate attributeName="stroke-dasharray" values="0, 30; 30, 0; 0, 30" dur="3s" repeatCount="indefinite" />
+                </path>
+            </svg>
+            <div style="display: flex; flex-direction: column; justify-content: center;">
+                <span class="logo-text" style="letter-spacing: 2px;">SHYAM CHRISTY PAUL</span>
+                <span style="font-size: 0.7rem; font-weight: 700; color: var(--primary); letter-spacing: 3px; text-transform: uppercase; margin-top: 6px;">BI & Marketing Cloud</span>
+            </div>
+        </a>
+        
+        <div class="nav-actions">
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#skills">Skills</a>
+                <a href="#certifications">Certifications</a>
+                <a href="projects.html">Work</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="theme-toggle" id="theme-toggle" title="Toggle Theme">
+                <span id="theme-icon">🌙</span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="container">
+        <h1>Shyam Christy Paul</h1>
+        <p>A Senior Business Intelligence Analyst & Salesforce Marketing Cloud Developer bridging the gap between data-driven insights and marketing automation.</p>
+        <div class="badge-container">
+            <span class="hero-badge">SFMC Admin Certified</span>
+            <span class="hero-badge">Salesforce CRM Knowledge</span>
+            <span class="hero-badge">Business Intelligence Analyst</span>
+            <span class="hero-badge">SSJS Developer</span>
+            <span class="hero-badge">SQL Specialist</span>
+            <span class="hero-badge">Python Analyst</span>
+            <span class="hero-badge">AMPScript Developer</span>
+            <span class="hero-badge">GCP BigQuery</span>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+    <section id="about" class="reveal" style="text-align: center;">
+        <h2 class="section-title">About Me</h2>
+        <div class="glass-card" style="max-width: 900px; margin: 0 auto; text-align: center;">
+            <p style="font-size: 1.25rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 24px;">
+                I am a specialized **Business Intelligence Analyst** and **Salesforce Marketing Cloud Architect** with a passion for transforming raw data into automated marketing excellence. With deep expertise in the Salesforce ecosystem, I bridge the technical gap between complex data architectures and high-impact customer journeys.
+            </p>
+            <p style="font-size: 1.15rem; line-height: 1.8; color: var(--text-muted);">
+                Currently driving strategy for one of Australia’s largest retail supermarket chains, I leverage a powerful stack—including **GCP BigQuery, Python, SQL, and SSJS**—to architect data-driven solutions that scale. Whether I’m developing complex AMPScript for personalized communications or analyzing multi-channel campaign performance, my goal is always the same: **precision, automation, and actionable growth.**
+            </p>
+        </div>
+    </section>
+
+    <section id="experience" class="reveal" style="text-align: center;">
+        <h2 class="section-title">Professional Journey</h2>
+        <div class="timeline-container">
+            <!-- Latest Role (Right Side) -->
+            <div class="timeline-item reveal">
+                <div class="timeline-node"></div>
+                <div class="timeline-date">Dec. 2023 – Present</div>
+                <div class="timeline-content glass-card">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 4px;">SFMC Developer / Data & Insights Specialist</h3>
+                    <p style="color: var(--primary); font-weight: 800; margin-bottom: 12px;">Woolworths Group | Sydney, AU</p>
+                    <ul style="color: var(--text-muted); font-size: 0.9rem; text-align: left; padding-left: 18px; line-height: 1.6;">
+                        <li>Architected scalable **AMPscript, SSJS, and SQL** solutions for complex campaigns.</li>
+                        <li>Optimized journeys and automations for high-volume, reliable data flows.</li>
+                        <li>Engineered **BigQuery & SFMC SQL** for advanced segmentation and tracking.</li>
+                        <li>Built stakeholder dashboards integrating review and feedback data insights.</li>
+                        <li>Delivered incremental SFMC enhancements in an **Agile/Scrum** environment.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Middle Role (Left Side) -->
+            <div class="timeline-item left-side reveal">
+                <div class="timeline-node"></div>
+                <div class="timeline-date">Mar. 2020 - Nov. 2023</div>
+                <div class="timeline-content glass-card">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 4px;">Salesforce Administrator / Campaign Manager</h3>
+                    <p style="color: var(--primary); font-weight: 800; margin-bottom: 12px;">Woolworths Group | Sydney, AU</p>
+                    <ul style="color: var(--text-muted); font-size: 0.9rem; text-align: left; padding-left: 18px; line-height: 1.6;">
+                        <li>Managed end-to-end campaigns from segmentation to post-deployment analysis.</li>
+                        <li>Developed performance dashboards to track real-time operational metrics.</li>
+                        <li>Standardized **SFMC best practices**, automation, and data hygiene.</li>
+                        <li>Bridged technical and business requirements for seamless solution delivery.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Foundation Role (Right Side) -->
+            <div class="timeline-item reveal">
+                <div class="timeline-node"></div>
+                <div class="timeline-date">April 2017 – March 2020</div>
+                <div class="timeline-content glass-card">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 4px;">Automation Test Engineer</h3>
+                    <p style="color: var(--primary); font-weight: 800; margin-bottom: 12px;">Woolworths Group | Chennai, India</p>
+                    <ul style="color: var(--text-muted); font-size: 0.9rem; text-align: left; padding-left: 18px; line-height: 1.6;">
+                        <li>Developed **Selenium/Java** frameworks to ensure data and functional accuracy.</li>
+                        <li>Established core expertise in debugging and structured problem-solving.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="reveal">
+        <h2 class="section-title">Technical Expertise</h2>
+        
+        <div class="skills-category">
+            <h3>Salesforce Marketing Cloud</h3>
+            <div class="skills-grid">
+                <div class="skill-item"><i class="devicon-salesforce-plain colored"></i><span>Email Studio</span></div>
+                <div class="skill-item"><i class="devicon-salesforce-plain colored"></i><span>Journey Builder</span></div>
+                <div class="skill-item"><i class="devicon-salesforce-plain colored"></i><span>Automation Studio</span></div>
+                <div class="skill-item"><i class="devicon-salesforce-plain colored"></i><span>Contact Builder</span></div>
+                <div class="skill-item"><i class="devicon-salesforce-plain colored"></i><span>CloudPages</span></div>
+            </div>
+        </div>
+
+        <div class="skills-category">
+            <h3>Development</h3>
+            <div class="skills-grid">
+                <div class="skill-item"><i class="devicon-salesforce-plain colored"></i><span>AMPscript</span></div>
+                <div class="skill-item"><i class="devicon-javascript-plain colored"></i><span>SSJS (Server-Side JS)</span></div>
+                <div class="skill-item"><i class="devicon-html5-plain colored"></i><span>HTML/CSS</span></div>
+            </div>
+        </div>
+
+        <div class="skills-category">
+            <h3>Data Analytics</h3>
+            <div class="skills-grid">
+                <div class="skill-item"><i class="devicon-azuresqldatabase-plain colored"></i><span>SQL / SOQL</span></div>
+                <div class="skill-item"><i class="devicon-googlecloud-plain colored"></i><span>BigQuery</span></div>
+                <div class="skill-item"><i class="devicon-googlecloud-plain colored"></i><span>Data Views</span></div>
+                <div class="skill-item"><i class="devicon-googlecloud-plain colored"></i><span>Data Modelling</span></div>
+            </div>
+        </div>
+
+        <div class="skills-category">
+            <h3>Marketing Operations</h3>
+            <div class="skills-grid">
+                <div class="skill-item"><i class="devicon-salesforce-plain colored"></i><span>Campaign Orchestration</span></div>
+                <div class="skill-item"><i class="devicon-salesforce-plain colored"></i><span>Personalisation</span></div>
+                <div class="skill-item"><i class="devicon-salesforce-plain colored"></i><span>Segmentation</span></div>
+                <div class="skill-item"><i class="devicon-salesforce-plain colored"></i><span>Automation</span></div>
+            </div>
+        </div>
+
+        <div class="skills-category">
+            <h3>Other Tools</h3>
+            <div class="skills-grid">
+                <div class="skill-item"><i class="devicon-github-original colored"></i><span>GitHub</span></div>
+                <div class="skill-item"><i class="devicon-javascript-plain colored"></i><span>APIs (Foundational)</span></div>
+                <div class="skill-item"><i class="devicon-python-plain colored"></i><span>Python (Data Analysis)</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications" class="reveal">
+        <h2 class="section-title">Certifications</h2>
+        <div class="skills-grid">
+            <div class="skill-item">
+                <i class="devicon-salesforce-plain colored"></i>
+                <span>SFMC Administrator</span>
+            </div>
+            <div class="skill-item">
+                <i class="devicon-salesforce-plain colored"></i>
+                <span>Salesforce Administrator</span>
+            </div>
+            <div class="skill-item">
+                <i class="devicon-javascript-plain colored"></i>
+                <span>AMPScript Certification</span>
+                <span style="font-size: 0.7rem; opacity: 0.6; margin-top: 4px;">AMPSCRIPT ACADEMY</span>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer id="contact" class="reveal">
+    <div class="container">
+        <div class="footer-content">
+            <a href="#" class="footer-logo">SCP.</a>
+            <h2 style="font-size: 3rem; margin-bottom: 48px; letter-spacing: -1px;">Let's Get In Touch</h2>
+            
+            <form action="https://formsubmit.co/sam.christy406@gmail.com" method="POST" class="contact-form glass-card">
+                <!-- Anti-Spam Honeypot -->
+                <input type="text" name="_honey" style="display:none">
+                <!-- Disable Captcha for better UX -->
+                <input type="hidden" name="_captcha" value="false">
+                
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" name="name" class="form-control" placeholder="Enter your name" required>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" name="email" class="form-control" placeholder="email@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" name="phone" class="form-control" placeholder="+61 ...">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Your Message</label>
+                    <textarea name="message" class="form-control" rows="5" placeholder="How can I help you?" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn-submit">Send Message</button>
+            </form>
+
+            <div class="social-links" style="margin-top: 60px;">
+                <a href="mailto:sam.christy406@gmail.com">Email</a>
+                <a href="https://www.linkedin.com/in/shyam-christy-paul/">LinkedIn</a>
+                <a href="#">GitHub</a>
+                <a href="#">Twitter</a>
+            </div>
+        </div>
+        <p style="margin-top: 100px; color: var(--text-muted); font-size: 0.9rem; opacity: 0.5;">© 2026 Shyam Christy Paul. Engineered for the Cloud. Designed for Performance.</p>
+    </div>
+</footer>
+
+<script>
+    // --- Theme Switcher ---
+    const toggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const html = document.documentElement;
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    html.setAttribute('data-theme', savedTheme);
+    themeIcon.innerText = savedTheme === 'dark' ? '🌙' : '☀️';
+
+    toggleBtn.addEventListener('click', () => {
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        themeIcon.innerText = newTheme === 'dark' ? '🌙' : '☀️';
+    });
+
+    // --- Hyper-Smooth Reveal Logic ---
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // --- Interactive Parallax Background ---
+    document.addEventListener('mousemove', (e) => {
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+        
+        const blob1 = document.querySelector('.blob-1');
+        const blob2 = document.querySelector('.blob-2');
+        
+        blob1.style.transform = `translate(${x * 50}px, ${y * 50}px)`;
+        blob2.style.transform = `translate(${x * -50}px, ${y * -50}px)`;
+    });
+</script>
+
+</body>
+</html>
